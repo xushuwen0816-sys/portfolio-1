@@ -9,6 +9,7 @@ export const SOCIAL_URLS = {
 
 export const PODCAST_MAIN_URL = "https://podcasts.apple.com/cn/podcast/%E8%A7%82%E5%BF%83%E8%87%AA%E5%9C%A8/id1852420070";
 export const DREAMY_DRIFT_URL = "https://dreamydrift.vercel.app";
+export const LUCID_JOURNALS_URL = "https://lucid-journals.vercel.app/";
 
 export const Translations: Record<'en' | 'zh', Translation> = {
   en: {
@@ -26,11 +27,17 @@ export const Translations: Record<'en' | 'zh', Translation> = {
     },
     aiLab: {
       title: "AI Lab",
-      cardActive: {
+      cardDreamy: {
         title: "DreamyDrift",
         tag: "Sleep & Mood AI",
         desc: "A sleep tracking web app that helps cultivate healthy habits, featuring an AI Analyst to deconstruct reasons for staying up late.",
         action: "Launch App"
+      },
+      cardLucid: {
+        title: "Lucid Journals",
+        tag: "Mindfulness & Tarot AI",
+        desc: "Journaling for manifestation & energy checks (Tarot). AI reviews emotions, limiting beliefs, and higher-self traits.",
+        action: "Open Journal"
       },
       comingSoon: "Coming Soon"
     },
@@ -132,11 +139,17 @@ export const Translations: Record<'en' | 'zh', Translation> = {
     },
     aiLab: {
       title: "AI 实验室",
-      cardActive: {
+      cardDreamy: {
         title: "云眠 (DreamyDrift)",
         tag: "睡眠 & 情绪 AI",
         desc: "一款帮助培养健康习惯的睡眠追踪应用，特设 AI 分析师解构熬夜成因。",
         action: "启动应用"
+      },
+      cardLucid: {
+        title: "澄 (Lucid Journals)",
+        tag: "觉察 & 塔罗 AI",
+        desc: "助力心愿显化与每日能量检视的觉察日记。AI 定期复盘情绪、限制性信念与高我特质。",
+        action: "开启旅程"
       },
       comingSoon: "敬请期待"
     },

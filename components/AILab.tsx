@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { SectionProps } from '../types';
-import { ArrowRight, Sparkles, Box, Lock } from 'lucide-react';
-import { DREAMY_DRIFT_URL } from '../constants';
+import { ArrowRight, Sparkles, Box, Lock, Moon } from 'lucide-react';
+import { DREAMY_DRIFT_URL, LUCID_JOURNALS_URL } from '../constants';
 
 export const AILab: React.FC<SectionProps> = ({ t }) => {
   // Define items with a discriminated union structure
@@ -10,12 +10,21 @@ export const AILab: React.FC<SectionProps> = ({ t }) => {
     { 
       type: 'active' as const, 
       id: 1,
-      title: t.aiLab.cardActive.title,
-      tag: t.aiLab.cardActive.tag,
-      desc: t.aiLab.cardActive.desc,
-      action: t.aiLab.cardActive.action
+      title: t.aiLab.cardDreamy.title,
+      tag: t.aiLab.cardDreamy.tag,
+      desc: t.aiLab.cardDreamy.desc,
+      action: t.aiLab.cardDreamy.action,
+      icon: Moon
     },
-    { type: 'placeholder' as const, id: 2 },
+    { 
+      type: 'active' as const, 
+      id: 2,
+      title: t.aiLab.cardLucid.title,
+      tag: t.aiLab.cardLucid.tag,
+      desc: t.aiLab.cardLucid.desc,
+      action: t.aiLab.cardLucid.action,
+      icon: Sparkles
+    },
     { type: 'placeholder' as const, id: 3 },
     { type: 'placeholder' as const, id: 4 },
     { type: 'placeholder' as const, id: 5 },
@@ -23,8 +32,12 @@ export const AILab: React.FC<SectionProps> = ({ t }) => {
   ];
 
   const handleCardClick = (item: typeof items[0]) => {
-    if (item.type === 'active' && item.id === 1) {
-      window.open(DREAMY_DRIFT_URL, '_blank');
+    if (item.type === 'active') {
+      if (item.id === 1) {
+        window.open(DREAMY_DRIFT_URL, '_blank');
+      } else if (item.id === 2) {
+        window.open(LUCID_JOURNALS_URL, '_blank');
+      }
     }
   };
 
@@ -59,7 +72,8 @@ export const AILab: React.FC<SectionProps> = ({ t }) => {
                 <div>
                   <div className="flex justify-between items-start mb-4">
                     <div className="p-2 rounded-lg bg-orange-50 dark:bg-orange-500/10 text-orange-500 border border-orange-100 dark:border-orange-500/20">
-                       <Sparkles size={18} />
+                       {/* Render Dynamic Icon */}
+                       {item.icon && <item.icon size={18} />}
                     </div>
                     <span className="px-2 py-0.5 bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-300 text-[10px] font-bold uppercase tracking-wider rounded border border-orange-200 dark:border-orange-500/30">
                       {item.tag}

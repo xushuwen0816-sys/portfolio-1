@@ -14,7 +14,13 @@ export interface Translation {
   };
   aiLab: {
     title: string;
-    cardActive: {
+    cardDreamy: {
+      title: string;
+      tag: string;
+      desc: string;
+      action: string;
+    };
+    cardLucid: {
       title: string;
       tag: string;
       desc: string;
