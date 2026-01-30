@@ -25,7 +25,7 @@ export const Profile: React.FC<SectionProps> = ({ t }) => {
                 </ScrollFloat>
                 
                 {/* Sub-headline */}
-                <p className="text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-light mb-8">
+                <p className="text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal dark:font-light mb-8">
                     {t.profile.subHeadline}
                 </p>
                 

@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { SectionProps } from '../types';
-import { ArrowRight, Sparkles, Box, Lock, Moon } from 'lucide-react';
-import { DREAMY_DRIFT_URL, LUCID_JOURNALS_URL } from '../constants';
+import { ArrowRight, Sparkles, Box, Lock, Moon, Star, BookOpen } from 'lucide-react';
+import { DREAMY_DRIFT_URL, LUCID_JOURNALS_URL, LUCID_TAROT_URL, MOE_FLASHCARDS_URL } from '../constants';
 import ScrollReveal from './ScrollReveal';
 
 export const AILab: React.FC<SectionProps> = ({ t }) => {
@@ -26,8 +26,24 @@ export const AILab: React.FC<SectionProps> = ({ t }) => {
       action: t.aiLab.cardLucid.action,
       icon: Sparkles
     },
-    { type: 'placeholder' as const, id: 3 },
-    { type: 'placeholder' as const, id: 4 },
+    { 
+      type: 'active' as const, 
+      id: 3,
+      title: t.aiLab.cardLucidTarot.title,
+      tag: t.aiLab.cardLucidTarot.tag,
+      desc: t.aiLab.cardLucidTarot.desc,
+      action: t.aiLab.cardLucidTarot.action,
+      icon: Star
+    },
+    { 
+      type: 'active' as const, 
+      id: 4,
+      title: t.aiLab.cardMoeFlashcards.title,
+      tag: t.aiLab.cardMoeFlashcards.tag,
+      desc: t.aiLab.cardMoeFlashcards.desc,
+      action: t.aiLab.cardMoeFlashcards.action,
+      icon: BookOpen
+    },
     { type: 'placeholder' as const, id: 5 },
     { type: 'placeholder' as const, id: 6 },
   ];
@@ -38,6 +54,10 @@ export const AILab: React.FC<SectionProps> = ({ t }) => {
         window.open(DREAMY_DRIFT_URL, '_blank');
       } else if (item.id === 2) {
         window.open(LUCID_JOURNALS_URL, '_blank');
+      } else if (item.id === 3) {
+        window.open(LUCID_TAROT_URL, '_blank');
+      } else if (item.id === 4) {
+        window.open(MOE_FLASHCARDS_URL, '_blank');
       }
     }
   };

@@ -1,4 +1,3 @@
-
 export interface Translation {
   nav: {
     home: string;
@@ -32,14 +31,42 @@ export interface Translation {
       desc: string;
       action: string;
     };
+    cardLucidTarot: {
+      title: string;
+      tag: string;
+      desc: string;
+      action: string;
+    };
+    cardMoeFlashcards: {
+      title: string;
+      tag: string;
+      desc: string;
+      action: string;
+    };
     comingSoon: string;
   };
   promptMuseum: {
     title: string;
     catA: string;
     catB: string;
-    itemsA: Array<{ title: string; content: string; type: string }>;
-    itemsB: Array<{ title: string; content: string; type: string }>;
+    itemsA: Array<{ 
+      id: string;
+      title: string; 
+      summary: string; 
+      type: string;
+      fullContent?: string;
+      tags?: string[];
+      liveDemoUrl?: string;
+    }>;
+    itemsB: Array<{ 
+      id: string;
+      title: string; 
+      summary: string; 
+      type: string;
+      fullContent?: string;
+      tags?: string[];
+      liveDemoUrl?: string;
+    }>;
   };
   studio: {
     title: string;

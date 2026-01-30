@@ -318,7 +318,7 @@ export const About: React.FC<SectionProps> = ({ t, lang }) => {
   };
 
   return (
-    <section id="contact" className="pt-8 pb-10 px-4">
+    <section className="pt-8 pb-10 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="flex flex-col items-center justify-center gap-12 text-center">
           

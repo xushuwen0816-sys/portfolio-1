@@ -13,8 +13,11 @@ import { Footer } from './components/Footer';
 export default function App() {
   // --- State Management ---
   const [lang, setLang] = useState<'en' | 'zh'>('en');
-  // Default to 'dark' as requested
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  // Default theme based on time: 7:00-18:00 is light, others are dark
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    const hour = new Date().getHours();
+    return (hour >= 7 && hour < 18) ? 'light' : 'dark';
+  });
 
   // --- Effects ---
   useEffect(() => {
