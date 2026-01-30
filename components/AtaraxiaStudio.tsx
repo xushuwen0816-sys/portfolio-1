@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { SectionProps } from '../types';
 import { Mic, Moon, Play, X, QrCode, ExternalLink, Copy, Check } from 'lucide-react';
 import { PODCAST_MAIN_URL } from '../constants';
+import ScrollReveal from './ScrollReveal';
 
 export const AtaraxiaStudio: React.FC<SectionProps> = ({ t, lang }) => {
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -15,22 +16,35 @@ export const AtaraxiaStudio: React.FC<SectionProps> = ({ t, lang }) => {
   };
 
   return (
-    <section className="py-24 px-4 overflow-hidden relative">
+    <section id="ataraxia-studio" className="py-24 px-4 overflow-hidden relative">
       {/* Organic Background Blobs - Updated to Orange/Amber */}
       <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-96 h-96 bg-amber-500/20 rounded-full blur-[100px] pointer-events-none mix-blend-multiply dark:mix-blend-screen"></div>
       <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/3 w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[120px] pointer-events-none mix-blend-multiply dark:mix-blend-screen"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <span className="text-orange-600 dark:text-orange-400 font-bold tracking-[0.2em] uppercase text-xs mb-3 block">
+          <ScrollReveal
+            as="span"
+            containerClassName="text-orange-600 dark:text-orange-400 font-bold tracking-[0.2em] uppercase text-sm mb-3 block"
+          >
             {t.studio.title}
-          </span>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-800 dark:text-slate-100 mb-4">
+          </ScrollReveal>
+          <ScrollReveal
+            as="h2"
+            containerClassName="text-3xl md:text-4xl font-serif font-bold text-slate-800 dark:text-slate-100 mb-4"
+          >
             {t.studio.podcastTitle}
-          </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
+          </ScrollReveal>
+          <ScrollReveal 
+            as="p"
+            baseOpacity={0.1} 
+            enableBlur 
+            baseRotation={3} 
+            blurStrength={4} 
+            containerClassName="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-light leading-relaxed"
+          >
             {t.studio.podcastDesc}
-          </p>
+          </ScrollReveal>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">

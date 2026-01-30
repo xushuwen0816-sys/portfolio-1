@@ -12,6 +12,12 @@ export interface Translation {
     subtext: string;
     role: string;
   };
+  profile: {
+    headline: string;
+    subHeadline: string;
+    tags: string[];
+    intro: string;
+  };
   aiLab: {
     title: string;
     cardDreamy: {

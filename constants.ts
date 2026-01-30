@@ -25,6 +25,12 @@ export const Translations: Record<'en' | 'zh', Translation> = {
       subtext: "Exploring the boundaries of AI, understanding the depths of emotions.",
       role: "Data Analyst | Podcaster | AI Explorer"
     },
+    profile: {
+      headline: "Turning Data into Decisions.",
+      subHeadline: "Ex-ByteDance & DiDi Global. A Business Analytics professional (MTech EBAC @ NUS) dedicated to optimizing user experiences and scaling business growth through rigorous experimentation and statistical modeling.",
+      tags: ["Causal Inference", "AB Testing", "Predictive Analytics", "Dashboard Designing", "User Empathy", "Creative Thinking"],
+      intro: "\"Passionate about transforming messy datasets into clear, strategic narratives that empower cross-functional teams.\""
+    },
     aiLab: {
       title: "AI Lab",
       cardDreamy: {
@@ -121,7 +127,7 @@ export const Translations: Record<'en' | 'zh', Translation> = {
       ]
     },
     footer: {
-      copyright: "© 2025 Serena. Designed with 💗."
+      copyright: "© 2026. Designed with Serena."
     }
   },
   zh: {
@@ -136,6 +142,12 @@ export const Translations: Record<'en' | 'zh', Translation> = {
       headline: "数据理性 x 灵魂疗愈",
       subtext: "探索 AI 的边界，理解情绪的深度。",
       role: "数据分析师 | 播客制作人 | AI 探索者"
+    },
+    profile: {
+      headline: "以数据驱动决策",
+      subHeadline: "前字节跳动 & 滴滴全球。商业分析专业人士 (NUS MTech EBAC)，致力于通过严谨的实验设计与统计建模，优化用户体验并推动业务规模化增长。",
+      tags: ["因果推断", "A/B测试", "预测性分析", "可视化看板设计", "用户共情", "创造性思维"],
+      intro: "“热衷于将纷繁复杂的数据转化为清晰的战略洞察，赋能跨职能团队做出明智决策。”"
     },
     aiLab: {
       title: "AI 实验室",
@@ -233,7 +245,7 @@ export const Translations: Record<'en' | 'zh', Translation> = {
       ]
     },
     footer: {
-      copyright: "© 2025 Serena. Designed with 💗."
+      copyright: "© 2026. Designed with Serena."
     }
   }
 };

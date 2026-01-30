@@ -67,27 +67,7 @@ export const About: React.FC<SectionProps> = ({ t, lang }) => {
         </div>
     </div>
 
-    <h2>教育经历</h2>
-    <div class="section-item">
-        <div class="item-header">
-            <span>新加坡国立大学（硕士）| 企业商业分析</span>
-            <span>2024/08 – 2025/11</span>
-        </div>
-        <div class="item-sub">GPA: 4.48/5.0（Top 5%）</div>
-        <ul>
-            <li>相关课程：预测建模 (A)，用户分析 (A)，文本分析 (A)，商业分析项目管理 (A+)，数据管理 (A+)</li>
-        </ul>
-    </div>
-    <div class="section-item">
-        <div class="item-header">
-            <span>河海大学（学士）| 金融工程</span>
-            <span>2020/09 – 2024/07</span>
-        </div>
-        <div class="item-sub">GPA: 4.53/5.0（Top 10%）</div>
-        <ul>
-            <li>相关课程：概率论与数理统计 (97)，金融计量学 (96)，统计学 (90)，随机过程 (90)，宏观经济学 (92)</li>
-        </ul>
-    </div>
+
 
     <h2>实习经历</h2>
     
@@ -219,29 +199,7 @@ export const About: React.FC<SectionProps> = ({ t, lang }) => {
         </div>
     </div>
 
-    <h2>EDUCATION</h2>
-    <div class="section-item">
-        <div class="item-header">
-            <span>National University of Singapore</span>
-            <span>Aug 2024 - Oct 2025</span>
-        </div>
-        <div class="item-sub">Master of Technology</div>
-        <ul>
-            <li>Major in Enterprise Business Analytics, GPA: 4.48/5.0, Ranking: Top 5%</li>
-            <li>Coursework Taken: Predictive Analytics (A), Customer Analytics (A), Text Analytics (A), Business Analytics Project Management (A+), Data Management for Analytics (A+), etc.</li>
-        </ul>
-    </div>
-    <div class="section-item">
-        <div class="item-header">
-            <span>Hohai University</span>
-            <span>Sep 2020 - Jun 2024</span>
-        </div>
-        <div class="item-sub">Bachelor of Economics</div>
-        <ul>
-            <li>Major in Financial Engineering, GPA: 4.53/5.0 (87.52/100), Ranking: Top 10%</li>
-            <li>Coursework Taken: Probability and Mathematical Statistics (97), Financial Econometrics (96), Financial Stochastic Processes (90), Financial Risk Management (90), Macroeconomics (92), etc.</li>
-        </ul>
-    </div>
+
 
     <h2>INTERNSHIP EXPERIENCE</h2>
     
@@ -360,48 +318,24 @@ export const About: React.FC<SectionProps> = ({ t, lang }) => {
   };
 
   return (
-    <section className="py-24 px-4 bg-gradient-to-b from-transparent to-orange-50/30 dark:to-orange-900/5">
-      <div className="max-w-5xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-16 items-start">
+    <section id="contact" className="pt-8 pb-10 px-4">
+      <div className="max-w-4xl mx-auto">
+        <div className="flex flex-col items-center justify-center gap-12 text-center">
           
-          {/* Skills Column */}
-          <div className="w-full md:w-1/2">
-            <h2 className="text-xl font-bold mb-8 uppercase tracking-widest text-slate-800 dark:text-slate-200">// {t.about.skillsTitle}</h2>
-            <div className="space-y-3">
-              {t.about.skillList.map((skill, index) => (
-                <div key={index} className="group">
-                  <div className="flex justify-between mb-1">
-                    <span className="font-medium text-slate-700 dark:text-slate-200 text-xs tracking-wide uppercase">{skill}</span>
-                  </div>
-                  <div className="h-1.5 w-full bg-slate-200 dark:bg-slate-700 overflow-hidden rounded-full">
-                    <div 
-                      className="h-full bg-gradient-to-r from-orange-500 to-amber-500 transition-all duration-1000 ease-out group-hover:shadow-[0_0_10px_rgba(249,115,22,0.5)]"
-                      style={{ width: `${getSkillValue(index)}%` }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Contact & Actions Column */}
-          <div className="w-full md:w-1/2 md:pl-12 border-l border-slate-200 dark:border-slate-800/50">
-            <h2 className="text-xl font-bold mb-8 uppercase tracking-widest text-slate-800 dark:text-slate-200">// {t.about.title}</h2>
-            <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed font-light text-sm md:text-base">
-               {t.about.summary}
-            </p>
+          {/* Action Buttons Container */}
+          <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12">
             
-            <div className="flex flex-wrap gap-4 mb-12">
-              <button 
-                onClick={handleDownloadResume}
-                className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-orange-500 to-amber-500 hover:opacity-90 text-white rounded-md font-semibold shadow-lg shadow-orange-500/20 transition-all hover:translate-y-[-2px] text-sm tracking-wide cursor-pointer"
-              >
-                <Download size={16} />
-                {t.about.downloadResume}
-              </button>
-            </div>
+            {/* Download Resume Button */}
+            <button 
+              onClick={handleDownloadResume}
+              className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-orange-500 to-amber-500 hover:opacity-90 text-white rounded-md font-semibold shadow-lg shadow-orange-500/20 transition-all hover:translate-y-[-2px] text-sm tracking-wide cursor-pointer"
+            >
+              <Download size={16} />
+              {t.about.downloadResume}
+            </button>
 
-            <div className="flex gap-8 text-slate-500 items-start">
+            {/* Social Links */}
+            <div className="flex gap-8 text-slate-500 items-center">
               
               {/* Email with Popover */}
               <div className="relative flex flex-col items-center gap-2 group cursor-pointer">
@@ -411,13 +345,13 @@ export const About: React.FC<SectionProps> = ({ t, lang }) => {
                 >
                   <Mail size={18} />
                 </button>
-                <span className="text-[10px] uppercase font-bold tracking-wider">{t.about.social.email}</span>
+                <span className="text-[10px] uppercase font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity absolute top-full mt-2 whitespace-nowrap">{t.about.social.email}</span>
                 
                 {/* Popover Card */}
                 {showEmailCard && (
                   <>
                     <div className="fixed inset-0 z-10" onClick={() => setShowEmailCard(false)}></div>
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 z-20 w-64 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-white/10 p-4 animate-fade-in-up">
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 z-20 w-64 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-white/10 p-4 animate-fade-in-up text-left">
                       <div className="flex justify-between items-start mb-2">
                         <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Email Address</span>
                         <button onClick={() => setShowEmailCard(false)} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
@@ -441,17 +375,17 @@ export const About: React.FC<SectionProps> = ({ t, lang }) => {
                 )}
               </div>
 
-              <a href={SOCIAL_URLS.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors flex flex-col items-center gap-2 group cursor-pointer">
+              <a href={SOCIAL_URLS.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors flex flex-col items-center gap-2 group cursor-pointer relative">
                 <div className="p-3 bg-white dark:bg-white/5 rounded-full shadow-sm group-hover:scale-110 transition-transform border border-slate-100 dark:border-white/10">
                   <Linkedin size={18} />
                 </div>
-                <span className="text-[10px] uppercase font-bold tracking-wider">{t.about.social.linkedin}</span>
+                <span className="text-[10px] uppercase font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity absolute top-full mt-2 whitespace-nowrap">{t.about.social.linkedin}</span>
               </a>
-              <a href={SOCIAL_URLS.github} target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors flex flex-col items-center gap-2 group cursor-pointer">
+              <a href={SOCIAL_URLS.github} target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors flex flex-col items-center gap-2 group cursor-pointer relative">
                 <div className="p-3 bg-white dark:bg-white/5 rounded-full shadow-sm group-hover:scale-110 transition-transform border border-slate-100 dark:border-white/10">
                   <Github size={18} />
                 </div>
-                <span className="text-[10px] uppercase font-bold tracking-wider">{t.about.social.github}</span>
+                <span className="text-[10px] uppercase font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity absolute top-full mt-2 whitespace-nowrap">{t.about.social.github}</span>
               </a>
             </div>
           </div>

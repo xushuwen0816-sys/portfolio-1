@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Translations } from './constants';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
+import { Profile } from './components/Profile';
 import { AILab } from './components/AILab';
 import { PromptMuseum } from './components/PromptMuseum';
 import { AtaraxiaStudio } from './components/AtaraxiaStudio';
@@ -48,9 +49,10 @@ export default function App() {
       
       <main className="flex flex-col w-full overflow-x-hidden">
         <Hero t={t} />
+        <Profile t={t} />
         <AILab t={t} />
-        <PromptMuseum t={t} lang={lang} />
         <AtaraxiaStudio t={t} lang={lang} />
+        <PromptMuseum t={t} lang={lang} />
         <About t={t} lang={lang} />
       </main>
 

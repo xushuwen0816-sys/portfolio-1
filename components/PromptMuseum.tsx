@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { SectionProps } from '../types';
 import { Terminal, Heart, MoveRight, X } from 'lucide-react';
+import ScrollFloat from './ScrollFloat';
 
 export const PromptMuseum: React.FC<SectionProps> = ({ t, lang }) => {
   const [activeTab, setActiveTab] = useState<'A' | 'B'>('A');
@@ -17,35 +18,19 @@ export const PromptMuseum: React.FC<SectionProps> = ({ t, lang }) => {
   };
 
   return (
-    <section className="py-16 px-4 bg-slate-50/50 dark:bg-black/20 border-y border-slate-100 dark:border-white/5 backdrop-blur-sm relative">
+    <section id="prompt-museum" className="pt-16 pb-6 px-4 border-t border-slate-100 dark:border-white/5 relative">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-xl font-bold mb-6 tracking-tight uppercase text-slate-800 dark:text-slate-200">// {t.promptMuseum.title}</h2>
-          
-          <div className="inline-flex bg-white dark:bg-slate-900/50 p-1 rounded-lg border border-slate-200 dark:border-white/10 shadow-sm">
-            <button
-              onClick={() => setActiveTab('A')}
-              className={`flex items-center gap-2 px-6 py-2 rounded-md text-sm font-medium transition-all duration-300 cursor-pointer ${
-                activeTab === 'A' 
-                  ? 'bg-slate-800 text-white shadow-md' 
-                  : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5'
-              }`}
-            >
-              <Terminal size={14} />
-              {t.promptMuseum.catA}
-            </button>
-            <button
-              onClick={() => setActiveTab('B')}
-              className={`flex items-center gap-2 px-6 py-2 rounded-md text-sm font-medium transition-all duration-300 cursor-pointer ${
-                activeTab === 'B' 
-                  ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md' 
-                  : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5'
-              }`}
-            >
-              <Heart size={14} />
-              {t.promptMuseum.catB}
-            </button>
-          </div>
+          <ScrollFloat 
+            animationDuration={1} 
+            ease='back.inOut(2)' 
+            scrollStart='top bottom-=20%' 
+            scrollEnd='bottom center' 
+            stagger={0.03}
+            containerClassName="text-3xl md:text-4xl font-bold tracking-tight text-slate-800 dark:text-slate-100 uppercase mb-6"
+          >
+            {`// ${t.promptMuseum.title}`}
+          </ScrollFloat>
         </div>
 
         {/* Carousel Container */}
@@ -79,13 +64,11 @@ export const PromptMuseum: React.FC<SectionProps> = ({ t, lang }) => {
                                 <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[#0f172a] to-transparent"></div>
                             </div>
                         ) : (
-                            <div className="p-4 bg-gradient-to-br from-orange-50 to-amber-50/50 dark:from-orange-900/10 dark:to-transparent rounded-lg border border-orange-100 dark:border-orange-500/10 h-32 flex items-center justify-center relative">
-                                <p className="italic font-serif text-sm text-slate-700 dark:text-slate-300 leading-relaxed text-center line-clamp-4">
-                                    {item.content}
-                                </p>
+                            <div className="bg-orange-50 dark:bg-orange-900/10 p-6 rounded-lg border border-orange-100 dark:border-orange-500/10 h-32 relative overflow-hidden flex items-center justify-center text-center italic text-slate-600 dark:text-slate-300">
+                                <p className="font-serif text-sm leading-relaxed px-4 opacity-90">{item.content}</p>
                             </div>
                         )}
-
+                        
                         <div className="mt-4 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
                             <MoveRight className="text-slate-400 w-4 h-4" />
                         </div>
