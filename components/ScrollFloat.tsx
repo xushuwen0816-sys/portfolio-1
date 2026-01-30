@@ -74,9 +74,19 @@ const ScrollFloat: React.FC<ScrollFloatProps> = ({
   }, [scrollContainerRef, animationDuration, ease, scrollStart, scrollEnd, stagger, children]);
 
   const splitText = (text: string) => {
-    return text.split("").map((char, index) => (
-      <span className="char" key={index} style={{ display: 'inline-block' }}>
-        {char === " " ? "\u00A0" : char}
+    const words = text.split(" ");
+    return words.map((word, i) => (
+      <span key={i} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+        {word.split("").map((char, j) => (
+          <span className="char" key={j} style={{ display: "inline-block" }}>
+            {char}
+          </span>
+        ))}
+        {i < words.length - 1 && (
+          <span className="char" style={{ display: "inline-block" }}>
+            &nbsp;
+          </span>
+        )}
       </span>
     ));
   };
