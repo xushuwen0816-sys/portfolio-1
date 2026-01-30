@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { SectionProps } from '../types';
 import { Terminal, Heart, MoveRight, X } from 'lucide-react';
-import ScrollFloat from './ScrollFloat';
+import ScrollReveal from './ScrollReveal';
 
 export const PromptMuseum: React.FC<SectionProps> = ({ t, lang }) => {
   const [activeTab, setActiveTab] = useState<'A' | 'B'>('A');
@@ -21,16 +21,12 @@ export const PromptMuseum: React.FC<SectionProps> = ({ t, lang }) => {
     <section id="prompt-museum" className="pt-16 pb-6 px-4 border-t border-slate-100 dark:border-white/5 relative">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
-          <ScrollFloat 
-            animationDuration={1} 
-            ease='back.inOut(2)' 
-            scrollStart='top bottom-=20%' 
-            scrollEnd='bottom center' 
-            stagger={0.03}
+          <ScrollReveal 
+            as="h2"
             containerClassName="text-3xl md:text-4xl font-bold tracking-tight text-slate-800 dark:text-slate-100 uppercase mb-6"
           >
             {`// ${t.promptMuseum.title}`}
-          </ScrollFloat>
+          </ScrollReveal>
         </div>
 
         {/* Carousel Container */}

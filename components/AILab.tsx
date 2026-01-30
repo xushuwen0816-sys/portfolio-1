@@ -3,7 +3,7 @@ import React from 'react';
 import { SectionProps } from '../types';
 import { ArrowRight, Sparkles, Box, Lock, Moon } from 'lucide-react';
 import { DREAMY_DRIFT_URL, LUCID_JOURNALS_URL } from '../constants';
-import ScrollFloat from './ScrollFloat';
+import ScrollReveal from './ScrollReveal';
 
 export const AILab: React.FC<SectionProps> = ({ t }) => {
   // Define items with a discriminated union structure
@@ -46,16 +46,12 @@ export const AILab: React.FC<SectionProps> = ({ t }) => {
     <section id="ai-lab" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Centered Header to match Prompt Museum */}
       <div className="text-center mb-10">
-        <ScrollFloat 
-          animationDuration={1} 
-          ease='back.inOut(2)' 
-          scrollStart='top bottom-=20%' 
-          scrollEnd='bottom center' 
-          stagger={0.03}
+        <ScrollReveal 
+          as="h2"
           containerClassName="text-3xl md:text-4xl font-bold tracking-tight text-slate-800 dark:text-slate-100 uppercase"
         >
           {`// ${t.aiLab.title}`}
-        </ScrollFloat>
+        </ScrollReveal>
       </div>
 
       {/* Uniform Grid Layout */}

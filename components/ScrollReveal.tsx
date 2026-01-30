@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, ReactNode } from 'react';
+import React, { useEffect, useRef, ReactNode, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -28,10 +28,35 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   blurStrength = 4,
   containerClassName = "",
   textClassName = "",
-  rotationEnd = "bottom bottom",
-  wordAnimationEnd = "bottom bottom",
+  rotationEnd = "bottom center",
+  wordAnimationEnd = "bottom center",
 }) => {
   const containerRef = useRef<HTMLElement>(null);
+
+  // Memoize processed children to prevent unnecessary re-renders
+  const processedChildren = useMemo(() => {
+    if (typeof children === "string") {
+      // Check for Chinese characters
+      const hasChinese = /[\u4e00-\u9fa5]/.test(children);
+      
+      if (hasChinese) {
+        // Split by character for Chinese
+        return children.split("").map((char, index) => (
+           <span className="scroll-reveal-item" key={index} style={{ display: 'inline-block', transformOrigin: 'center' }}>
+            {char}
+          </span>
+        ));
+      } else {
+        // Split by word for English/others
+        return children.split(" ").map((word, index) => (
+          <span className="scroll-reveal-item" key={index} style={{ display: 'inline-block', marginRight: '0.25em', transformOrigin: 'center' }}>
+            {word}
+          </span>
+        ));
+      }
+    }
+    return children;
+  }, [children]);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -43,17 +68,14 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
         : window;
 
     const ctx = gsap.context(() => {
-      const charElements = el.querySelectorAll('.word');
-
-      // 确保初始状态设置正确
-      gsap.set(el, { rotation: baseRotation });
-      gsap.set(charElements, {
-        opacity: baseOpacity,
-        filter: enableBlur ? `blur(${blurStrength}px)` : "none",
-      });
-
-      gsap.to(
+      // Select all split items
+      const targets = el.querySelectorAll('.scroll-reveal-item');
+      
+      // Use fromTo for more robust initial state handling
+      // Animation for the container (rotation)
+      gsap.fromTo(
         el,
+        { rotation: baseRotation },
         {
           rotation: 0,
           ease: "none",
@@ -62,43 +84,54 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
             scroller,
             start: "top bottom",
             end: rotationEnd,
-            scrub: true,
+            scrub: 1, // Add a little smoothing
           },
         }
       );
 
-      gsap.to(
-        charElements,
-        {
-          opacity: 1,
-          filter: enableBlur ? "blur(0px)" : "none",
-          stagger: 0.05,
-          scrollTrigger: {
-            trigger: el,
-            scroller,
-            start: "top bottom-=20%",
-            end: wordAnimationEnd,
-            scrub: true,
+      // Animation for the characters/words
+      if (targets.length > 0) {
+        gsap.fromTo(
+          targets,
+          {
+            opacity: baseOpacity,
+            filter: enableBlur ? `blur(${blurStrength}px)` : "none",
+            y: 20, // Increased y-offset for better visibility
           },
-        }
-      );
+          {
+            opacity: 1,
+            filter: enableBlur ? "blur(0px)" : "none",
+            y: 0,
+            stagger: 0.05,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              scroller,
+              start: "top 85%", // Trigger earlier (when top of element hits 85% of viewport height)
+              end: wordAnimationEnd,
+              scrub: 1, // Add smoothing
+            },
+          }
+        );
+      }
     }, containerRef);
 
     return () => ctx.revert();
-  }, [scrollContainerRef, enableBlur, baseOpacity, baseRotation, blurStrength, rotationEnd, wordAnimationEnd]);
-
-  const splitText = (text: string) => {
-    return text.split(" ").map((word, index) => (
-      <span className="word" key={index} style={{ display: 'inline-block', marginRight: '0.25em' }}>
-        {word}
-      </span>
-    ));
-  };
+  }, [
+    scrollContainerRef, 
+    enableBlur, 
+    baseOpacity, 
+    baseRotation, 
+    blurStrength, 
+    rotationEnd, 
+    wordAnimationEnd, 
+    processedChildren // Add processedChildren to dependency array to ensure animation re-runs on content change
+  ]);
 
   return (
     <Component ref={containerRef} className={`scroll-reveal ${containerClassName}`}>
       <span className={textClassName}>
-        {typeof children === "string" ? splitText(children) : children}
+        {processedChildren}
       </span>
     </Component>
   );
