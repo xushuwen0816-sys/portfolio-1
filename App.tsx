@@ -36,7 +36,6 @@ export default function App() {
 
   // --- Handlers ---
   const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
-  const toggleLang = () => setLang(prev => prev === 'en' ? 'zh' : 'en');
   
   const t = Translations[lang];
 
@@ -45,12 +44,10 @@ export default function App() {
       <Header 
         theme={theme} 
         toggleTheme={toggleTheme} 
-        lang={lang} 
-        toggleLang={toggleLang}
         t={t} 
       />
       
-      <main className="flex flex-col w-full overflow-x-hidden">
+      <main className="flex flex-col w-full">
         <Hero t={t} />
         <Profile t={t} />
         <AILab t={t} />

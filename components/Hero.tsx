@@ -67,7 +67,7 @@ export const Hero: React.FC<SectionProps> = ({ t }) => {
           role="button"
           aria-label="Scroll to content"
         >
-          <ChevronDown className="w-5 h-5 mx-auto text-slate-400" />
+          <ChevronDown className="w-5 h-5 mx-auto text-slate-500 dark:text-slate-400" />
         </div>
       </div>
     </section>

@@ -6,6 +6,7 @@ import { Download, Mail, Linkedin, Github, X, Copy, Check } from 'lucide-react';
 
 export const About: React.FC<SectionProps> = ({ t, lang }) => {
   const [showEmailCard, setShowEmailCard] = useState(false);
+  const [showDownloadMenu, setShowDownloadMenu] = useState(false);
   const [copied, setCopied] = useState(false);
 
   // Generate random high values for skills to ensure they look "high"
@@ -21,8 +22,8 @@ export const About: React.FC<SectionProps> = ({ t, lang }) => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleDownloadResume = () => {
-    const isEn = lang === 'en';
+  const handleDownloadResume = (resumeLang: 'en' | 'zh') => {
+    const isEn = resumeLang === 'en';
     
     // Resume content for Chinese
     const resumeContentZh = `
@@ -315,6 +316,7 @@ export const About: React.FC<SectionProps> = ({ t, lang }) => {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+    setShowDownloadMenu(false);
   };
 
   return (
@@ -325,14 +327,40 @@ export const About: React.FC<SectionProps> = ({ t, lang }) => {
           {/* Action Buttons Container */}
           <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12">
             
-            {/* Download Resume Button */}
-            <button 
-              onClick={handleDownloadResume}
-              className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-orange-500 to-amber-500 hover:opacity-90 text-white rounded-md font-semibold shadow-lg shadow-orange-500/20 transition-all hover:translate-y-[-2px] text-sm tracking-wide cursor-pointer"
-            >
-              <Download size={16} />
-              {t.about.downloadResume}
-            </button>
+            {/* Download Resume Button Wrapper */}
+            <div className="relative">
+              <button 
+                onClick={() => setShowDownloadMenu(!showDownloadMenu)}
+                className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-orange-500 to-amber-500 hover:opacity-90 text-white rounded-md font-semibold shadow-lg shadow-orange-500/20 transition-all hover:translate-y-[-2px] text-sm tracking-wide cursor-pointer"
+              >
+                <Download size={16} />
+                {t.about.downloadResume}
+              </button>
+
+              {/* Dropdown Menu */}
+              {showDownloadMenu && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setShowDownloadMenu(false)}></div>
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-50">
+                    <div className="w-48 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-white/10 overflow-hidden animate-fade-in-up">
+                      <button
+                        onClick={() => handleDownloadResume('en')}
+                        className="w-full px-4 py-3 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors flex items-center justify-between group text-slate-700 dark:text-slate-200"
+                      >
+                        <span className="font-medium">English Version</span>
+                      </button>
+                      <div className="h-[1px] bg-slate-100 dark:bg-white/5"></div>
+                      <button
+                        onClick={() => handleDownloadResume('zh')}
+                        className="w-full px-4 py-3 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors flex items-center justify-between group text-slate-700 dark:text-slate-200"
+                      >
+                        <span className="font-medium">Chinese Version</span>
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
 
             {/* Social Links */}
             <div className="flex gap-8 text-slate-500 items-center">
@@ -351,25 +379,27 @@ export const About: React.FC<SectionProps> = ({ t, lang }) => {
                 {showEmailCard && (
                   <>
                     <div className="fixed inset-0 z-10" onClick={() => setShowEmailCard(false)}></div>
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 z-20 w-64 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-white/10 p-4 animate-fade-in-up text-left">
-                      <div className="flex justify-between items-start mb-2">
-                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Email Address</span>
-                        <button onClick={() => setShowEmailCard(false)} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
-                          <X size={14} />
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 z-20">
+                      <div className="w-64 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-white/10 p-4 animate-fade-in-up text-left relative">
+                        <div className="flex justify-between items-start mb-2">
+                          <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Email Address</span>
+                          <button onClick={() => setShowEmailCard(false)} className="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-200">
+                            <X size={14} />
+                          </button>
+                        </div>
+                        <a href={SOCIAL_URLS.email} className="block text-sm font-semibold text-orange-600 hover:underline mb-3 truncate">
+                          shuwen.xu@u.nus.edu
+                        </a>
+                        <button 
+                          onClick={handleCopyEmail}
+                          className="flex items-center justify-center gap-2 w-full py-1.5 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded text-xs font-medium transition-colors text-slate-600 dark:text-slate-300"
+                        >
+                          {copied ? <Check size={12} /> : <Copy size={12} />}
+                          {copied ? 'Copied' : 'Copy'}
                         </button>
+                        {/* Triangle Pointer */}
+                        <div className="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-3 h-3 bg-white dark:bg-slate-800 border-b border-r border-slate-200 dark:border-white/10 rotate-45"></div>
                       </div>
-                      <a href={SOCIAL_URLS.email} className="block text-sm font-semibold text-orange-600 hover:underline mb-3 truncate">
-                        shuwen.xu@u.nus.edu
-                      </a>
-                      <button 
-                        onClick={handleCopyEmail}
-                        className="flex items-center justify-center gap-2 w-full py-1.5 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded text-xs font-medium transition-colors text-slate-600 dark:text-slate-300"
-                      >
-                        {copied ? <Check size={12} /> : <Copy size={12} />}
-                        {copied ? 'Copied' : 'Copy'}
-                      </button>
-                      {/* Triangle Pointer */}
-                      <div className="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-3 h-3 bg-white dark:bg-slate-800 border-b border-r border-slate-200 dark:border-white/10 rotate-45"></div>
                     </div>
                   </>
                 )}

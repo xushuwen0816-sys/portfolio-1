@@ -1,36 +1,37 @@
 
 import React, { useState } from 'react';
 import { SectionProps } from '../types';
-import { Terminal, Heart, MoveRight, X, Copy, ExternalLink, Lock } from 'lucide-react';
+import { Terminal, Heart, MoveRight, X, Copy, ExternalLink, Lock, Check } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 
 export const PromptMuseum: React.FC<SectionProps> = ({ t, lang }) => {
   const [activeTab, setActiveTab] = useState<'A' | 'B'>('A');
   // Store the full item object instead of just a boolean
   const [activeItem, setActiveItem] = useState<typeof t.promptMuseum.itemsA[0] | null>(null);
+  const [copied, setCopied] = useState(false);
 
   const items = activeTab === 'A' ? t.promptMuseum.itemsA : t.promptMuseum.itemsB;
 
   const handleItemClick = (item: typeof items[0]) => {
     if (item.fullContent) {
       setActiveItem(item);
+      setCopied(false);
     }
   };
 
   const copyToClipboard = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-      // Optional: Add toast notification logic here if needed
-      // For now, we rely on the user noticing the action or we could change the icon temporarily,
-      // but keeping it simple as requested.
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       console.error('Failed to copy:', err);
     }
   };
 
   return (
-    <section id="prompt-museum" className="pt-16 pb-6 px-4 border-t border-slate-100 dark:border-white/5 relative">
-      <div className="max-w-7xl mx-auto">
+    <section id="prompt-museum" className="pt-16 pb-6 border-t border-slate-100 dark:border-white/5 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <ScrollReveal 
             as="h2"
@@ -41,27 +42,27 @@ export const PromptMuseum: React.FC<SectionProps> = ({ t, lang }) => {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative">
-            {/* Subtle accent blob based on tab */}
-            <div className={`absolute top-0 right-0 w-96 h-96 blur-[100px] rounded-full opacity-10 pointer-events-none transition-colors duration-500 ${activeTab === 'A' ? 'bg-indigo-400' : 'bg-orange-500'}`}></div>
-
-            <div className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory px-4 md:px-0 scrollbar-hide pt-4">
-                {items.map((item, index) => {
-                    const hasContent = !!item.fullContent;
-                    
-                    if (!hasContent) {
+            <div className="relative">
+                {/* Subtle accent blob based on tab */}
+                <div className={`absolute top-0 right-0 w-96 h-96 blur-[100px] rounded-full opacity-10 pointer-events-none transition-colors duration-500 ${activeTab === 'A' ? 'bg-indigo-400' : 'bg-orange-500'}`}></div>
+    
+                <div className="flex overflow-x-auto gap-5 pb-8 snap-x snap-mandatory scrollbar-hide pt-4">
+                    {items.map((item, index) => {
+                        const hasContent = !!item.fullContent;
+                        
+                        if (!hasContent) {
                         // "Coming Soon" / Locked Card Style
                         return (
                             <div 
                                 key={index}
                                 className="
-                                    glass-panel min-w-[260px] md:min-w-[360px] max-w-[360px] rounded-xl p-6 flex-shrink-0 snap-center
-                                    transition-all duration-300 transform
-                                    hover:scale-[1.02] hover:shadow-xl
-                                    border border-white/50 dark:border-white/10 relative overflow-hidden group
-                                    grayscale opacity-80 hover:grayscale-0 hover:opacity-100 cursor-not-allowed
-                                    flex flex-col justify-center items-center
-                                "
+                                glass-panel w-[85%] sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-13.33px)] h-60 rounded-xl p-6 flex-shrink-0 snap-center
+                                transition-all duration-300 transform
+                                hover:scale-[1.02] hover:shadow-xl
+                                border border-white/50 dark:border-white/10 relative overflow-hidden group
+                                grayscale opacity-80 hover:grayscale-0 hover:opacity-100 cursor-not-allowed
+                                flex flex-col justify-center items-center
+                            "
                             >
                                 <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-slate-500/10 to-transparent rounded-bl-full pointer-events-none"></div>
                                 
@@ -87,28 +88,30 @@ export const PromptMuseum: React.FC<SectionProps> = ({ t, lang }) => {
                             key={index} 
                             onClick={() => handleItemClick(item)}
                             className={`
-                                glass-panel min-w-[260px] md:min-w-[360px] max-w-[360px] rounded-xl p-6 flex-shrink-0 snap-center
+                                glass-panel w-[85%] sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-13.33px)] h-60 rounded-xl p-6 flex-shrink-0 snap-center
                                 transition-all duration-300 hover:translate-y-[-4px] hover:shadow-lg cursor-pointer
                                 border border-white/50 dark:border-white/10 relative overflow-hidden group
-                                flex flex-col justify-between gap+3
+                                flex flex-col justify-center
                             `}
                         >
-                            <h3 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-100">
-                                {item.title}
-                            </h3>
+                            <div className="flex-1 flex flex-col justify-center gap-3 overflow-hidden pb-4">
+                                <h3 className="text-lg font-bold text-slate-800 dark:text-slate-100">
+                                    {item.title}
+                                </h3>
 
-                            {activeTab === 'A' ? (
-                                <div className="bg-[#0f172a] text-slate-300 p-4 rounded-lg font-mono text-xs overflow-x-auto shadow-inner border border-slate-700/50 h-32 overflow-hidden relative flex-1 flex flex-col justify-center mb-[-1rem]">
-                                    <p className="whitespace-pre-wrap leading-relaxed opacity-90">{item.summary}</p>
-                                    <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[#0f172a] to-transparent"></div>
-                                </div>
-                            ) : (
-                                <div className="bg-orange-50 dark:bg-orange-900/10 p-6 rounded-lg border border-orange-100 dark:border-orange-500/10 h-32 relative overflow-hidden flex items-center justify-center text-center italic text-slate-600 dark:text-slate-300 flex-1 mb-[-1rem]">
-                                    <p className="font-serif text-sm leading-relaxed px-4 opacity-90">{item.summary}</p>
-                                </div>
-                            )}
+                                {activeTab === 'A' ? (
+                                    <div className="bg-[#0f172a] text-slate-300 p-4 rounded-lg font-mono text-xs overflow-x-auto shadow-inner border border-slate-700/50 overflow-hidden relative flex flex-col justify-center">
+                                        <p className="whitespace-pre-wrap leading-relaxed opacity-90 line-clamp-3">{item.summary}</p>
+                                        <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-[#0f172a] to-transparent"></div>
+                                    </div>
+                                ) : (
+                                    <div className="bg-orange-50 dark:bg-orange-900/10 p-4 rounded-lg border border-orange-100 dark:border-orange-500/10 relative overflow-hidden flex items-center justify-center text-center italic text-slate-600 dark:text-slate-300">
+                                        <p className="font-serif text-sm leading-relaxed px-2 opacity-90 line-clamp-3">{item.summary}</p>
+                                    </div>
+                                )}
+                            </div>
                             
-                            <div className="mt-4 flex justify-end items-center opacity-0 group-hover:opacity-100 transition-opacity h-6 mb-[-0.5rem]">
+                            <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <MoveRight className="text-slate-400 w-4 h-4" />
                             </div>
                         </div>
@@ -116,7 +119,7 @@ export const PromptMuseum: React.FC<SectionProps> = ({ t, lang }) => {
                 })}
                 
                 {/* Empty spacer for end of scroll */}
-                <div className="min-w-[20px] md:hidden"></div>
+                <div className="min-w-[1px] md:hidden"></div>
             </div>
             
             {/* Scroll hint on mobile */}
@@ -165,8 +168,8 @@ export const PromptMuseum: React.FC<SectionProps> = ({ t, lang }) => {
                    className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-white/5 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 text-xs font-medium transition-colors"
                    title="Copy Prompt"
                  >
-                   <Copy size={14} />
-                   <span className="hidden sm:inline">Copy</span>
+                   {copied ? <Check size={14} className="text-green-500" /> : <Copy size={14} />}
+                   <span className="hidden sm:inline">{copied ? 'Copied!' : 'Copy'}</span>
                  </button>
 
                  <button 

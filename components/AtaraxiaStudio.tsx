@@ -59,7 +59,7 @@ export const AtaraxiaStudio: React.FC<SectionProps> = ({ t, lang }) => {
             <ul className="space-y-5 mb-8 flex-1">
               {t.studio.episodes.map((ep, idx) => (
                 <li key={idx} className="flex items-center gap-4 group/item">
-                  <span className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 text-slate-400 group-hover/item:bg-orange-500 group-hover/item:text-white transition-all shadow-sm">
+                  <span className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 group-hover/item:bg-orange-500 group-hover/item:text-white transition-all shadow-sm">
                     <Play size={12} fill="currentColor" />
                   </span>
                   <div className="flex-1">
@@ -132,7 +132,7 @@ export const AtaraxiaStudio: React.FC<SectionProps> = ({ t, lang }) => {
           <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 max-w-sm w-full relative z-10 shadow-2xl border border-white/20 animate-fade-in-up">
             <button 
               onClick={() => setIsContactOpen(false)}
-              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-800 dark:hover:text-white transition-colors"
+              className="absolute top-4 right-4 p-2 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors"
             >
               <X size={20} />
             </button>
@@ -148,18 +148,20 @@ export const AtaraxiaStudio: React.FC<SectionProps> = ({ t, lang }) => {
                 className="w-full group relative flex items-center justify-center gap-3 text-lg font-mono font-semibold text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/50 py-4 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all active:scale-95"
               >
                 <span>WeChat: O_oyuh</span>
-                <div className="p-1.5 rounded-md bg-white dark:bg-slate-700 text-slate-400 shadow-sm border border-slate-100 dark:border-slate-600 group-hover:text-orange-500 transition-colors">
+                <div className="p-1.5 rounded-md bg-white dark:bg-slate-700 text-slate-500 dark:text-slate-400 shadow-sm border border-slate-100 dark:border-slate-600 group-hover:text-orange-500 transition-colors">
                     {copied ? <Check size={16} className="text-green-500" /> : <Copy size={16} />}
                 </div>
                 
                 {copied && (
-                    <span className="absolute -top-10 left-1/2 -translate-x-1/2 text-xs font-bold bg-slate-800 text-white px-2 py-1.5 rounded shadow-lg animate-fade-in-up">
-                        Copied!
-                    </span>
+                    <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-50">
+                        <span className="block text-xs font-bold bg-slate-800 text-white px-2 py-1.5 rounded shadow-lg animate-fade-in-up">
+                            Copied!
+                        </span>
+                    </div>
                 )}
               </button>
               
-              <p className="mt-4 text-xs text-slate-400">
+              <p className="mt-4 text-xs text-slate-500 dark:text-slate-400">
                 {lang === 'zh' ? '点击复制微信号' : 'Click to copy WeChat ID'}
               </p>
             </div>

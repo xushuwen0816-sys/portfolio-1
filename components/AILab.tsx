@@ -119,13 +119,13 @@ export const AILab: React.FC<SectionProps> = ({ t }) => {
               // Placeholder State - Uniform Size
               <>
                 <div className="flex justify-between items-start mb-4">
-                  <div className="p-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-400 border border-slate-100 dark:border-slate-700">
+                  <div className="p-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-100 dark:border-slate-700">
                       <Lock size={18} />
                   </div>
                 </div>
                 
                 <div className="flex-1 flex flex-col justify-center items-center">
-                  <span className="text-slate-400 dark:text-slate-600 font-medium tracking-widest text-xs uppercase mb-2">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium tracking-widest text-xs uppercase mb-2">
                     {t.aiLab.comingSoon}
                   </span>
                   <div className="w-8 h-1 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">

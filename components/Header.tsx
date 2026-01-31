@@ -1,17 +1,15 @@
 import React from 'react';
-import { Translation, LangType } from '../types';
-import { SunIcon, MoonIcon, GlobeIcon } from 'lucide-react';
+import { Translation } from '../types';
+import { SunIcon, MoonIcon } from 'lucide-react';
 import BubbleMenu from './BubbleMenu';
 
 interface HeaderProps {
   theme: 'light' | 'dark';
   toggleTheme: () => void;
-  lang: LangType;
-  toggleLang: () => void;
   t: Translation;
 }
 
-export const Header: React.FC<HeaderProps> = ({ theme, toggleTheme, lang, toggleLang, t }) => {
+export const Header: React.FC<HeaderProps> = ({ theme, toggleTheme, t }) => {
   const menuItems = [
     {
       label: 'About',
@@ -69,14 +67,6 @@ export const Header: React.FC<HeaderProps> = ({ theme, toggleTheme, lang, toggle
         </div>
 
         <div className="flex items-center gap-3">
-          <button 
-            onClick={toggleLang}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-xs font-semibold tracking-wide border border-transparent hover:border-black/5 dark:hover:border-white/10"
-          >
-            <GlobeIcon size={14} />
-            <span>{lang === 'en' ? 'CN' : 'EN'}</span>
-          </button>
-
           <button 
             onClick={toggleTheme}
             className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors focus:outline-none"

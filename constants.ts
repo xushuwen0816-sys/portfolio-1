@@ -114,7 +114,7 @@ export const Translations: Record<'en' | 'zh', Translation> = {
       podcastDesc: "Deconstructing emotions, understanding self, practicing inward focus.",
       sectionEpisodes: "Featured Episodes",
       sectionConsultation: "Deep Consultation",
-      consultationDesc: "Using Tarot as a tool for deep self-dialogue and subconscious exploration.",
+      consultationDesc: "With 2+ years of experience and over 200 positive reviews, I use Tarot as a medium for deep self-dialogue and subconscious exploration.",
       episodes: [
         { 
           title: "Vol 1. Mindset | When 'Job Brain' is Online: Finding Inner Order in Job Hunting Anxiety", 
@@ -252,7 +252,7 @@ export const Translations: Record<'en' | 'zh', Translation> = {
       podcastDesc: "解构情绪，理解自我，练习向内走。",
       sectionEpisodes: "精选单集",
       sectionConsultation: "深度咨询",
-      consultationDesc: "以塔罗为工具，进行深度的自我对话与潜意识探索。",
+      consultationDesc: "拥有 2 年+咨询经验，收获 200+ 用户好评。以塔罗为工具，协助你进行深度的自我对话与潜意识探索。",
       episodes: [
         { 
           title: "Vol 1. 心法｜当「Job缘脑」上线：在求职焦虑中，找回你的内心秩序", 
