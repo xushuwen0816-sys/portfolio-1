@@ -8,10 +8,10 @@ export const SOCIAL_URLS = {
 };
 
 export const PODCAST_MAIN_URL = "https://podcasts.apple.com/cn/podcast/%E8%A7%82%E5%BF%83%E8%87%AA%E5%9C%A8/id1852420070";
-export const DREAMY_DRIFT_URL = "https://dreamydrift.vercel.app";
-export const LUCID_JOURNALS_URL = "https://lucid-journals.vercel.app/";
-export const LUCID_TAROT_URL = "https://lucidtarot.vercel.app";
-export const MOE_FLASHCARDS_URL = "https://moeflashcards.vercel.app";
+export const DREAMY_DRIFT_URL = "https://dreamydrift.netlify.app/";
+export const LUCID_JOURNALS_URL = "https://www.lucidjournal.space/";
+export const LUCID_TAROT_URL = "https://lucidtarot.netlify.app/";
+export const MOE_FLASHCARDS_URL = "https://moeflashcards.netlify.app/";
 
 export const Translations: Record<'en' | 'zh', Translation> = {
   en: {
