@@ -42,9 +42,9 @@ export const Translations: Record<'en' | 'zh', Translation> = {
         action: "Launch App"
       },
       cardLucid: {
-        title: "Lucid Journals",
+        title: "Lucid Journal",
         tag: "Mindfulness AI",
-        desc: "Journaling for manifestation & energy checks (Tarot). AI reviews emotions, limiting beliefs, and higher-self traits.",
+        desc: "Journaling, Tarot insights, and AI-powered reflection. Understand your emotions, limiting beliefs, and higher-self traits.",
         action: "Open Journal"
       },
       cardLucidTarot: {

@@ -10,21 +10,21 @@ export const AILab: React.FC<SectionProps> = ({ t }) => {
   const items = [
     { 
       type: 'active' as const, 
-      id: 1,
-      title: t.aiLab.cardDreamy.title,
-      tag: t.aiLab.cardDreamy.tag,
-      desc: t.aiLab.cardDreamy.desc,
-      action: t.aiLab.cardDreamy.action,
-      icon: Moon
-    },
-    { 
-      type: 'active' as const, 
       id: 2,
       title: t.aiLab.cardLucid.title,
       tag: t.aiLab.cardLucid.tag,
       desc: t.aiLab.cardLucid.desc,
       action: t.aiLab.cardLucid.action,
       icon: Sparkles
+    },
+    { 
+      type: 'active' as const, 
+      id: 1,
+      title: t.aiLab.cardDreamy.title,
+      tag: t.aiLab.cardDreamy.tag,
+      desc: t.aiLab.cardDreamy.desc,
+      action: t.aiLab.cardDreamy.action,
+      icon: Moon
     },
     { 
       type: 'active' as const, 
